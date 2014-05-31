@@ -1,6 +1,6 @@
 package ru.vitkt.androidanimal;
 
-import ru.vitkt.animaltools.SoundMeter;
+
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -16,7 +16,7 @@ public class AnimalInput implements SensorEventListener {
 	private final Sensor mProximity;
 	private final Sensor mLight;
 	private final Sensor mAccelerometer;
-	//private SoundMeter soundMeter;
+
 
 	
 	
@@ -33,8 +33,7 @@ public class AnimalInput implements SensorEventListener {
 		
 		mAccelerometer = mSensorManager
 				.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-		//soundMeter = new SoundMeter();
-		//soundMeter.start();
+
 	}
 	private int lastProximity = 0;
 	private int lastLight = 0;
@@ -56,10 +55,7 @@ public class AnimalInput implements SensorEventListener {
 	public float getUnstableValue() {
 		return unstableValue;
 	}
-//public double getAmplitude()
-//{
-//	return soundMeter.getAmplitude();
-//	}
+
 	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
 		// TODO Auto-generated method stub
@@ -151,12 +147,12 @@ public class AnimalInput implements SensorEventListener {
 		 mSensorManager.registerListener(this, mProximity, SensorManager.SENSOR_DELAY_NORMAL);
 		 mSensorManager.registerListener(this, mLight, SensorManager.SENSOR_DELAY_NORMAL);
 		 mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_FASTEST);
-		// soundMeter.start();
+
 	}
 
 	public void onPause() {
 		mSensorManager.unregisterListener(this);
-		//soundMeter.stop();
+
 		
 	}
 
