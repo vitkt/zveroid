@@ -4,6 +4,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 
 public class AnimalTouchDetector {
+	
+	// Выбрать целевые версии Андройда, учесть Deprecated
 	public float getTouchEmotionFactor() {
 
 		return touchFactor;

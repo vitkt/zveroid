@@ -9,6 +9,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 public class AnimalWallpaper extends WallpaperService {
+	// TODO Сделать нормальную архитектуру
+	
 	AnimalProcessor animalProcessor;
 	@Override
 	public Engine onCreateEngine() {

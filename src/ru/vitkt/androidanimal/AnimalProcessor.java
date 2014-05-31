@@ -10,7 +10,7 @@ import android.util.Log;
 public class AnimalProcessor {
 
 	Context context;
-
+	// TODO Избавиться от комментариев
 	// private AnimalOutput animalOutput;
 	private AnimalInput animalInput;
 	public AnimalWallpaperOutput animalWallpaperOutput;

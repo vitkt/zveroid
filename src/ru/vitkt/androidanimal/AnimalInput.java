@@ -9,6 +9,9 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
+
+
+//TODO Адаптировать работу под наличие сенсоров (или их отсутствие)
 public class AnimalInput implements SensorEventListener {
 	private Context context;
 	

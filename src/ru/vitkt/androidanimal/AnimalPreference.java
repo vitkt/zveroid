@@ -11,7 +11,7 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 public class AnimalPreference extends PreferenceActivity{
-	
+	// TODO Исправить баг с Preference
 	PreferenceManager manager;
 	
 	 @Override
