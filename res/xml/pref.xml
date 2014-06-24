@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <EditTextPreference android:key="columns"
-    android:title="Число столбцов"></EditTextPreference>
-    <EditTextPreference android:key="rows"
-    android:title="Число строк"></EditTextPreference>
+    <EditTextPreference
+        android:key="columns"
+        android:title="@string/column_num" >
+    </EditTextPreference>
+    <EditTextPreference
+        android:key="rows"
+        android:title="@string/row_num" >
+    </EditTextPreference>
 
 </PreferenceScreen>

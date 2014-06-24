@@ -5,22 +5,21 @@ import android.graphics.Canvas;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.service.wallpaper.WallpaperService;
+
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 public class AnimalWallpaper extends WallpaperService {
-	// TODO Сделать нормальную архитектуру
-	
+
+
 	AnimalProcessor animalProcessor;
+
 	@Override
 	public Engine onCreateEngine() {
-		// TODO Auto-generated method stub
 		animalProcessor = new AnimalProcessor(this);
 		return new SuperEngine();
-	}
+	}	
 	
-	
-
 	private class SuperEngine extends Engine {
 		private final Handler handler = new Handler();
 		private final Runnable drawRunner = new Runnable() {
@@ -30,32 +29,36 @@ public class AnimalWallpaper extends WallpaperService {
 			}
 
 		};
-		
 
 		private boolean visible = true;
-
-
-		public SuperEngine() {
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(AnimalWallpaper.this);
+		
+		void updateFromPreferences()
+		{
+			SharedPreferences prefs = PreferenceManager
+					.getDefaultSharedPreferences(AnimalWallpaper.this);
 			animalProcessor.animalWallpaperOutput.setMatrixSize(
-			Integer
-	          .valueOf(prefs.getString("rows", "4")),
-				
-				Integer
-		          .valueOf(prefs.getString("columns", "4")));
-				handler.post(drawRunner);
+					Integer.valueOf(prefs.getString("rows", "2")),
+
+					Integer.valueOf(prefs.getString("columns", "2")));
+
+		}
+		public SuperEngine() {
+			updateFromPreferences();
+			handler.post(drawRunner);
 		}
 
 		@Override
 		public void onVisibilityChanged(boolean visible) {
 			this.visible = visible;
+			updateFromPreferences();
 			if (visible) {
 				handler.post(drawRunner);
 			} else {
 				handler.removeCallbacks(drawRunner);
 			}
 		}
-
+		
+		
 		@Override
 		public void onSurfaceDestroyed(SurfaceHolder holder) {
 			super.onSurfaceDestroyed(holder);
@@ -66,13 +69,15 @@ public class AnimalWallpaper extends WallpaperService {
 		@Override
 		public void onSurfaceChanged(SurfaceHolder holder, int format,
 				int width, int height) {
+			super.onSurfaceChanged(holder, format, width, height);
 			animalProcessor.animalWallpaperOutput.setWidth(width);
 			animalProcessor.animalWallpaperOutput.setHeight(height);
-			super.onSurfaceChanged(holder, format, width, height);
+
 		}
 
 		@Override
 		public void onTouchEvent(MotionEvent event) {
+			super.onTouchEvent(event);
 			animalProcessor.animalTouch.onTouchEvent(event);
 		}
 
@@ -81,7 +86,7 @@ public class AnimalWallpaper extends WallpaperService {
 			Canvas canvas = null;
 			try {
 				canvas = holder.lockCanvas();
-				
+
 				if (canvas != null) {
 					animalProcessor.process(canvas);
 
@@ -96,6 +101,5 @@ public class AnimalWallpaper extends WallpaperService {
 			}
 		}
 
-		
 	}
 }

@@ -1,5 +1,9 @@
 <resources>
 
-    <string name="app_name">AndroidAnimalWallpaper</string>
+    <string name="app_name">Zveroid Wallpaper</string>
+    <string name="row_num">Number of rows</string>
+    <string name="column_num">Number of columns</string>
+    <string name="num_parse_error">Value must be number!</string>
+    <string name="big_number">Too big number!</string>
 
 </resources>

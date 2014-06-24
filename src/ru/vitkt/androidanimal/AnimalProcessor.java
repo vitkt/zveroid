@@ -1,26 +1,24 @@
 package ru.vitkt.androidanimal;
 
 import ru.vitkt.animaltools.AnimalTouchDetector;
-import android.app.Activity;
+
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Vibrator;
-import android.util.Log;
 
 public class AnimalProcessor {
 
 	Context context;
 	// TODO Избавиться от комментариев
-	// private AnimalOutput animalOutput;
-	private AnimalInput animalInput;
+
+	private AnimalSensor animalInput;
 	public AnimalWallpaperOutput animalWallpaperOutput;
 	public AnimalTouchDetector animalTouch;
 	public AnimalProcessor(Context _context) {
 		context = _context;
-		// animalOutput = new AnimalOutput(_context);
-		animalInput = new AnimalInput(_context);
+
+		animalInput = new AnimalSensor(_context);
 		animalWallpaperOutput = new AnimalWallpaperOutput();
-		animalTouch = new AnimalTouchDetector();
+		animalTouch = new AnimalTouchDetector(context);
 		onResume();
 	}
 
@@ -44,18 +42,12 @@ public class AnimalProcessor {
 
 		lightEmotion = 0f;
 		if (proximity != 0)
-			lightEmotion += 25f;
+			lightEmotion += 50f;
 
 		int light = animalInput.getLight();
 
-		lightEmotion += ((float) light / 300.0f) * 25f;
-		double curAmplitude = 0;// animalInput.getAmplitude();
-		double maxAmplitude = 5.0d;
-		if (curAmplitude > maxAmplitude) {
-			Log.i("aaa", "Big amp = " + curAmplitude);
-			curAmplitude = maxAmplitude;
-		}
-		lightEmotion += ((float) ((12.0d - curAmplitude) / 12.0d) * 50f);
+		lightEmotion += ((float) light / 300.0f) * 50f;
+	
 
 		stabilityEmotion = animalInput.getStability() * 100f;
 
@@ -82,8 +74,6 @@ public class AnimalProcessor {
 		if (stabilityEmotion > 100)
 			stabilityEmotion = 100;
 		int a, r, g, b;
-		// if (safetyEmotion < 50f)
-		// animalOutput.vibrate();
 
 		a = (int) ((safetyEmotion / 100f) * 255);
 		r = (int) ((touchEmotion / 100f) * 255);
@@ -91,13 +81,13 @@ public class AnimalProcessor {
 		b = (int) ((stabilityEmotion / 100f) * 255);
 
 		if (safetyEmotion < 50f) {
-			// animalOutput.vibrate();
+
 			r *= (safetyEmotion / 100f);
 			g *= (safetyEmotion / 100f);
 			b *= (safetyEmotion / 100f);
 		}
 
-		// animalOutput.setColorToScreen(a, r, g, b);
+
 		animalWallpaperOutput.setColor(a, r, g, b);
 		animalWallpaperOutput.draw(canvas);
 	}
