@@ -1,7 +1,7 @@
 <resources>
 
-    <string name="app_name">Zveroid Wallpaper</string>
-    <string name="description">Live wallpaper which react to world around</string>
+    <string name="app_name">Zveroid Wallpapers</string>
+    <string name="description">Live wallpapers which react to world around</string>
     <string name="row_num">Number of rows</string>
     <string name="column_num">Number of columns</string>
     <string name="num_parse_error">Value must be number!</string>
