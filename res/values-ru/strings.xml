@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">Zveroid Wallpaper</string>
+    <string name="description">Живые обои, которые реагируют на окружающий мир</string>
     <string name="row_num">Число строк</string>
     <string name="column_num">Число столбцов</string>
     <string name="num_parse_error">Значение должно быть числом!</string>

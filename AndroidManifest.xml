@@ -6,19 +6,20 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-
+	<uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true"/>
+	<uses-feature android:required="false" android:name="android.hardware.sensor.light"/>
+	<uses-feature android:required="true" android:name="android.software.live_wallpaper"/>
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/zveroid"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" android:description="@string/description">
         <service
             android:name="ru.vitkt.androidanimal.AnimalWallpaper"
             android:enabled="true"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:permission="android.permission.BIND_WALLPAPER"
-            android:singleUser="true" >
+            android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter android:priority="1" >
                 <action android:name="android.service.wallpaper.WallpaperService" />
             </intent-filter>
